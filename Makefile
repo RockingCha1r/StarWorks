@@ -1,7 +1,7 @@
 Q ?= @
 CC = arm-none-eabi-gcc
 BUILD_DIR = build
-NWLINK = npx --yes -- nwlink@0.0.16
+NWLINK = npx --yes -- nwlink@0.0.19
 LINK_GC = 1
 LTO = 1
 
@@ -15,7 +15,7 @@ src = $(addprefix src/,\
 )
 
 CFLAGS = -std=c99
-CFLAGS += $(shell $(NWLINK) eadk-cflags)
+CFLAGS += $(shell $(NWLINK) eadk-cflags-device)
 CFLAGS += -Os -Wall
 CFLAGS += -ggdb
 LDFLAGS = -Wl,--relocatable

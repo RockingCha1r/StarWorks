@@ -1,17 +1,18 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-#define CENTER_X 160
-#define CENTER_Y 120
-
 #include "../libs/eadk.h"
 #include <stdlib.h>
 #include "types.h"
 #include "camera.h"
 #include "constants.h"
+#include <string.h>
 
-void drawPixel(int x, int y, eadk_color_t color);
-void drawLine(int x0, int y0, int x1, int y1, eadk_color_t color);
-void drawModel(model m, camera cam, point3D pos, eadk_color_t color);
+extern uint8_t framebuffer[HEIGHT][WIDTH];
+
+void drawPixel(int x, int y, uint8_t color);
+void drawLine(int x0, int y0, int x1, int y1, uint8_t color);
+void drawModel(model m, camera cam, point3D pos, uint8_t color);
+void flushFrameBuffer();
 
 #endif

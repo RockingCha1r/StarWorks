@@ -1,2 +1,2 @@
-/build/icon.o
-/build/src/
+build/*
+!build/starworks.nwa
