@@ -1,5 +1,6 @@
 
 #include "graphics.h"
+#include <stdlib.h>
 
 void drawPixel(int x, int y, eadk_color_t color) {
 	eadk_rect_t pixelRect = {
