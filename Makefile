@@ -37,13 +37,13 @@ LDFLAGS += -flinker-output=nolto-rel
 endif
 
 .PHONY: build
-build: $(BUILD_DIR)/app.nwa
+build: $(BUILD_DIR)/starworks.nwa
 
 .PHONY: check
-check: $(BUILD_DIR)/app.bin
+check: $(BUILD_DIR)/starworks.bin
 
 .PHONY: run
-run: $(BUILD_DIR)/app.nwa
+run: $(BUILD_DIR)/starworks.nwa
 	@echo "INSTALL $<"
 	$(Q) $(NWLINK) install-nwa $<
 
@@ -55,7 +55,7 @@ $(BUILD_DIR)/%.elf: $(BUILD_DIR)/%.nwa
 	@echo "ELF     $@"
 	$(Q) $(NWLINK) nwa-elf $< $@
 
-$(BUILD_DIR)/app.nwa: $(call object_for,$(src)) $(BUILD_DIR)/icon.o
+$(BUILD_DIR)/starworks.nwa: $(call object_for,$(src)) $(BUILD_DIR)/icon.o
 	@echo "LD      $@"
 	$(Q) $(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
