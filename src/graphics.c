@@ -1,14 +1,14 @@
 
 #include "graphics.h"
 
-void draw_pixel(int x, int y, eadk_color_t color) {
+void drawPixel(int x, int y, eadk_color_t color) {
 	eadk_rect_t pixelRect = {
 		x, y, 1, 1
 	};
 	eadk_display_push_rect(pixelRect, &color);
 }
 
-void draw_line(int x0, int y0, int x1, int y1, eadk_color_t color) {
+void drawLine(int x0, int y0, int x1, int y1, eadk_color_t color) {
 	// to do: put the result in a buffer
 	int deltaX = abs(x1 - x0);
 	int deltaY = abs(y1 - y0);
@@ -17,7 +17,7 @@ void draw_line(int x0, int y0, int x1, int y1, eadk_color_t color) {
 	int stepY = (y0 < y1) ? 1 : -1;
 	int currentX = x0;
 	int currentY = y0;
-	draw_pixel(currentX, currentY, color);
+	drawPixel(currentX, currentY, color);
 	if (deltaX >= deltaY) {
 		parameter = 2 * deltaY - deltaX;
 		for (int i = 0; i < deltaX; i++) {
@@ -28,7 +28,7 @@ void draw_line(int x0, int y0, int x1, int y1, eadk_color_t color) {
 			} else {
 				parameter += (deltaY << 1);
 			}
-			draw_pixel(currentX, currentY, color); 
+			drawPixel(currentX, currentY, color); 
 		}
 	} else {
 		parameter = 2 * deltaX - deltaY;
@@ -40,7 +40,7 @@ void draw_line(int x0, int y0, int x1, int y1, eadk_color_t color) {
 			} else {
 				parameter += (deltaX << 1);
 			}
-			draw_pixel(currentX, currentY, color); 
+			drawPixel(currentX, currentY, color); 
 		}
 	}
 }
