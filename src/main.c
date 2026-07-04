@@ -3,19 +3,29 @@
 #include "camera.h"
 #include "types.h"
 
+/*
+To do:
+- watch out for division by zero in drawmodel
+- objects behind us are visible
+- buffer for Bresenham
+- camera rotation
+- NumWorks screen height/width
+- delta time
+*/
+
 const char eadk_app_name[] __attribute__((section(".rodata.eadk_app_name"))) = "StarWorks";
 const uint32_t eadk_api_level  __attribute__((section(".rodata.eadk_api_level"))) = 0;
 
 const int focalDistance = 100;
 
-point3D cubeVertices[] = {
+const point3D cubeVertices[] = {
 	{50, 50, 50}, {-50, 50, 50}, 
 	{50, -50, 50}, {50, 50, -50}, 
 	{-50, -50, 50}, {50, -50, -50}, 
 	{-50, 50, -50}, {-50, -50, -50}
 };
 
-edge cubeEdges[] = {
+const edge cubeEdges[] = {
 	{0,1}, {1,4},
 	{4,2}, {2,0},
 
@@ -28,7 +38,7 @@ edge cubeEdges[] = {
 	{2,5}, {4,7}   
 };
 
-model cube = {
+const model cube = {
 8, 12,
 	cubeVertices,
 	cubeEdges
@@ -56,7 +66,7 @@ void drawModel(model m, camera cam, point3D pos, eadk_color_t color) {
 	}
 }
 
-int main(int argc, char * argv[]) {
+int main() {
 
 	camera playerCamera = {
 		.position = {0, 0, 0}, 
