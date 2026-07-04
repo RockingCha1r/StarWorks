@@ -9,29 +9,29 @@ You'll need the embedded ARM toolchain and Node.js (works well with the v20.20.2
 <details>
 <summary>Downloading dependencies</summary>
 
-    ### Fedora
+### Fedora
 
-    ```bash
-    sudo dnf install arm-none-eabi-gcc-cs arm-none-eabi-binutils nodejs
-    ```
+```bash
+sudo dnf install arm-none-eabi-gcc-cs arm-none-eabi-binutils nodejs
+```
 
-    ### Debian / Ubuntu
+### Debian / Ubuntu
 
-    ```bash
-    sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi nodejs npm
-    ```
+```bash
+sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi nodejs npm
+```
 
-    ### Arch 
+### Arch 
 
-    ```bash
-    sudo pacman -S arm-none-eabi-gcc arm-none-eabi-binutils nodejs npm
-    ```
+```bash
+sudo pacman -S arm-none-eabi-gcc arm-none-eabi-binutils nodejs npm
+```
 
-    ### macOS
+### macOS
 
-    ```bash
-    brew install numworks/tap/arm-none-eabi-gcc node
-    ```
+```bash
+brew install numworks/tap/arm-none-eabi-gcc node
+```
 </details>
 
 ```bash
