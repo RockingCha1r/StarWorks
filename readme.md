@@ -7,8 +7,7 @@ I want to make a starfox-like game for the NumWorks calculator.
 You'll need the embedded ARM toolchain and Node.js (works well with the v20.20.2).
 
 <details>
-
-    <summary>Downloading dependencies</summary>
+<summary>Downloading dependencies</summary>
 
     ### Fedora
 
