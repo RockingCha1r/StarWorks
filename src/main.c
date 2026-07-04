@@ -49,7 +49,7 @@ int main() {
 			playerCamera.position.x += 1;
 		}
 
-		drawModel(cube, playerCamera, (point3D){0, 0, 100}, 1);
+		drawModel(arwing, playerCamera, (point3D){0, 0, 100}, 1);
 
 		eadk_display_wait_for_vblank();
 
