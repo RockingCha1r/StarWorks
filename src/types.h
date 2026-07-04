@@ -12,9 +12,9 @@ typedef struct {
 } edge;
 
 typedef struct {
-	uint16_t nVertex, nEdges;
-	point3D *vertices;
-	edge *edges;
+	const uint16_t nVertex, nEdges;
+	const point3D *vertices;
+	const edge *edges;
 } model;
 
 #endif
