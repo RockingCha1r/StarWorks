@@ -6,8 +6,8 @@
 #define FOCAL_DISTANCE 100
 #define WIDTH 280
 #define HEIGHT 200
-#define CENTER_X 160
-#define CENTER_Y 120
+#define CENTER_X 140
+#define CENTER_Y 100
 #define MARGIN 20
 
 static const eadk_color_t palette[2] = {
