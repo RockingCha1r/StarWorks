@@ -1,9 +1,8 @@
 #include "../libs/eadk.h"
 #include "graphics.h"
-#include "camera.h"
 #include "types.h"
+#include "player.h"
 #include "models.h"
-
 
 /*
 To do:
@@ -25,31 +24,22 @@ int main() {
 		.rotation = {0, 0, 0}
 	};
 
+	ship player = {
+		.shipModel = &arwing,
+		.rotation = {0,0,0},
+		.position = {0,0,100}
+	};
+
 	eadk_display_push_rect_uniform(eadk_screen_rect, eadk_color_black);
 
 	while(true) {
 		eadk_keyboard_state_t keyboard = eadk_keyboard_scan();
+
 		if (eadk_keyboard_key_down(keyboard, eadk_key_back)) {
 			break;
 		}
 
-		if (eadk_keyboard_key_down(keyboard, eadk_key_up)) {
-			playerCamera.position.z += 1;
-		}
-
-		if (eadk_keyboard_key_down(keyboard, eadk_key_down)) {
-			playerCamera.position.z -= 1;
-		}
-
-		if (eadk_keyboard_key_down(keyboard, eadk_key_left)) {
-			playerCamera.position.x -= 1;
-		}
-
-		if (eadk_keyboard_key_down(keyboard, eadk_key_right)) {
-			playerCamera.position.x += 1;
-		}
-
-		drawModel(arwing, playerCamera, (point3D){0, 0, 100}, 1);
+		updatePlayer(&player, &playerCamera, keyboard);
 
 		eadk_display_wait_for_vblank();
 

@@ -17,4 +17,16 @@ typedef struct {
 	const edge *edges;
 } model;
 
+typedef struct {
+    const model *shipModel;
+    point3D rotation;
+    point3D position;
+} ship;
+
+typedef struct {
+    point3D position;
+    point3D rotation;
+} camera;
+
+
 #endif

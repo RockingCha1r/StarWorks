@@ -49,15 +49,16 @@ void drawLine(int x0, int y0, int x1, int y1, uint8_t color) {
 	}
 }
 
-void drawModel(model m, camera cam, point3D pos, uint8_t color) {
+void drawModel(const model *m, camera *cam, point3D pos, uint8_t color) {
 
-	int finalCoordinates[m.nVertex][2]; // will contain the final coordinates to draw
-	bool vertexValid[m.nVertex];
+	int finalCoordinates[m->nVertex][2]; // will contain the final coordinates to draw
+	bool vertexValid[m->nVertex];
 	
-	for (int i = 0; i < m.nVertex; i++) {
-		int posX = pos.x + m.vertices[i].x - cam.position.x;
-		int posY = pos.y + m.vertices[i].y - cam.position.y;
-		int posZ = pos.z + m.vertices[i].z - cam.position.z;
+	for (int i = 0; i < m->nVertex; i++) {
+		// from local position to global position
+		int posX = pos.x + m->vertices[i].x - cam->position.x;
+		int posY = pos.y + m->vertices[i].y - cam->position.y;
+		int posZ = pos.z + m->vertices[i].z - cam->position.z;
 		if (posZ < 1) {
 			vertexValid[i] = false;
 			continue;
@@ -68,10 +69,10 @@ void drawModel(model m, camera cam, point3D pos, uint8_t color) {
 		finalCoordinates[i][1] = - (posY * FOCAL_DISTANCE) / posZ + CENTER_Y;
 	}
 
-	for (int i = 0; i < m.nEdges; i++) {
+	for (int i = 0; i < m->nEdges; i++) {
 		// get the indices of the two vertices connected by an edge
-		int indexA = m.edges[i].indexA;
-		int indexB = m.edges[i].indexB;
+		int indexA = m->edges[i].indexA;
+		int indexB = m->edges[i].indexB;
 
 		if (vertexValid[indexA] && vertexValid[indexB]) {
 			drawLine(finalCoordinates[indexA][0], finalCoordinates[indexA][1], finalCoordinates[indexB][0], finalCoordinates[indexB][1], color);

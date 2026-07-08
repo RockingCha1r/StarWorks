@@ -12,6 +12,7 @@ endef
 src = $(addprefix src/,\
   main.c \
   graphics.c \
+  player.c \
 )
 
 CFLAGS = -std=c99

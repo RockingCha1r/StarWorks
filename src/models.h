@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-const model cube = {
+static const model cube = {
     .nVertex = 8, 
     .nEdges = 12,
 	.vertices = (const point3D[]) {
@@ -25,7 +25,7 @@ const model cube = {
     }
 };
 
-const model arwing = { // i hate this shit
+static const model arwing = { // i hate this shit
     .nVertex = 15,
     .nEdges = 20,
     .vertices = (const point3D[]) {
