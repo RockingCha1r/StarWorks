@@ -20,13 +20,13 @@ const uint32_t eadk_api_level  __attribute__((section(".rodata.eadk_api_level"))
 int main() {
 
 	camera playerCamera = {
-		.position = {0, 0, 0}, 
+		.position = {0, 50, 0}, 
 		.rotation = {0, 0, 0}
 	};
 
 	ship player = {
 		.shipModel = &arwing,
-		.rotation = {0,0,0},
+		.rotation = {0,50,0},
 		.position = {0,0,100}
 	};
 
@@ -39,8 +39,11 @@ int main() {
 			break;
 		}
 
-		updatePlayer(&player, &playerCamera, keyboard);
+		drawGround(&playerCamera);
 
+		updatePlayer(&player, &playerCamera, keyboard);
+		
+		
 		eadk_display_wait_for_vblank();
 
 		flushFrameBuffer();

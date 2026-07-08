@@ -98,3 +98,27 @@ void flushFrameBuffer() {
 	}
 	memset(framebuffer, 0, sizeof(framebuffer));
 }
+
+void drawGround(camera *cam) {
+	// the entiere function is just a screenSize = realSize/distance
+	// it just draws lines on the ground
+
+	int scaledGroundHeight = -(GROUND_Y - cam->position.y) * FOCAL_DISTANCE;
+
+	for (int lineNumber = 0; lineNumber < NUMBER_LINES; lineNumber++) {
+
+		int currentZ = cam->position.z + lineNumber * LINE_SPACING; // relative z
+		currentZ -= currentZ % LINE_SPACING; 
+
+		int depth = currentZ - cam->position.z;
+
+		if (depth < 1) continue; // behind
+		
+		int leftDotX = (-GROUND_WIDTH - cam->position.x) * FOCAL_DISTANCE / depth + CENTER_X;
+		int rightDotX = (GROUND_WIDTH - cam->position.x) * FOCAL_DISTANCE / depth + CENTER_X;
+
+		int yLinePosition = scaledGroundHeight / depth + CENTER_Y; // 
+
+		drawLine(leftDotX, yLinePosition, rightDotX, yLinePosition, 3);
+	}
+}
