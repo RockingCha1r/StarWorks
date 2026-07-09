@@ -13,6 +13,7 @@ src = $(addprefix src/,\
   main.c \
   graphics.c \
   player.c \
+  bullet.c \
 )
 
 CFLAGS = -std=c99

@@ -18,11 +18,15 @@
 #define GROUND_WIDTH 100
 #define LINE_SPACING 50
 
-static const eadk_color_t palette[4] = {
+//BULLETS
+#define MAX_BULLETS 32
+
+static const eadk_color_t palette[5] = {
     0x0000, // black
     0xFFFF, // white
     0x961F, // light blue
-    0x73AE // gray
+    0x73AE, // gray
+    0xF800 // red
 };
 
 #endif

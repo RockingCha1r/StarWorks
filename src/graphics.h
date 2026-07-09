@@ -14,5 +14,6 @@ void drawLine(int x0, int y0, int x1, int y1, uint8_t color);
 void drawModel(const model *m, camera *cam, point3D pos, uint8_t color);
 void flushFrameBuffer();
 void drawGround(camera *cam);
+smallPoint2D projectPoint(point3D toProject, camera *cam);
 
 #endif

@@ -1,4 +1,6 @@
 #include "graphics.h"
+#include "constants.h"
+#include "types.h"
 
 uint8_t framebuffer[HEIGHT][WIDTH];
 
@@ -10,7 +12,6 @@ void drawPixel(int x, int y, uint8_t color) {
 }
 
 void drawLine(int x0, int y0, int x1, int y1, uint8_t color) {
-	// to do: put the result in a buffer
 	int deltaX = abs(x1 - x0);
 	int deltaY = abs(y1 - y0);
 	int parameter;
@@ -50,6 +51,7 @@ void drawLine(int x0, int y0, int x1, int y1, uint8_t color) {
 }
 
 void drawModel(const model *m, camera *cam, point3D pos, uint8_t color) {
+	//todo : use projectPoint()
 
 	int finalCoordinates[m->nVertex][2]; // will contain the final coordinates to draw
 	bool vertexValid[m->nVertex];
@@ -103,22 +105,36 @@ void drawGround(camera *cam) {
 	// the entiere function is just a screenSize = realSize/distance
 	// it just draws lines on the ground
 
-	int scaledGroundHeight = -(GROUND_Y - cam->position.y) * FOCAL_DISTANCE;
-
 	for (int lineNumber = 0; lineNumber < NUMBER_LINES; lineNumber++) {
 
 		int currentZ = cam->position.z + lineNumber * LINE_SPACING; // relative z
 		currentZ -= currentZ % LINE_SPACING; 
 
-		int depth = currentZ - cam->position.z;
-
-		if (depth < 1) continue; // behind
+		point3D leftDot = {-GROUND_WIDTH, GROUND_Y, currentZ};
+		point3D rightDot = {GROUND_WIDTH, GROUND_Y, currentZ};
 		
-		int leftDotX = (-GROUND_WIDTH - cam->position.x) * FOCAL_DISTANCE / depth + CENTER_X;
-		int rightDotX = (GROUND_WIDTH - cam->position.x) * FOCAL_DISTANCE / depth + CENTER_X;
+		smallPoint2D leftDotScreen = projectPoint(leftDot, cam);
+		smallPoint2D rightDotScreen = projectPoint(rightDot, cam);
 
-		int yLinePosition = scaledGroundHeight / depth + CENTER_Y; // 
-
-		drawLine(leftDotX, yLinePosition, rightDotX, yLinePosition, 3);
+		if ((leftDotScreen.x != 1 || leftDotScreen.y != 1) && (rightDotScreen.x != 1 || rightDotScreen.y != 1)) {
+			drawLine(leftDotScreen.x, leftDotScreen.y, rightDotScreen.x, rightDotScreen.y, 3);
+		}
 	}
+}
+
+smallPoint2D projectPoint(point3D toProject, camera *cam) {
+	
+
+	int distanceX = toProject.x - cam->position.x;
+	int distanceY = toProject.y - cam->position.y;
+	int distanceZ = toProject.z - cam->position.z;
+	
+	if (distanceZ < 1) {
+		return (smallPoint2D){-1, -1};
+	}
+
+	return (smallPoint2D) {
+		(distanceX*FOCAL_DISTANCE) / distanceZ + CENTER_X,
+		-(distanceY*FOCAL_DISTANCE) / distanceZ + CENTER_Y
+	};
 }
