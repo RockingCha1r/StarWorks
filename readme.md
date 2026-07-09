@@ -1,6 +1,10 @@
-# Starworks
+# Starworks - ![Language C](https://img.shields.io/badge/Language-C-blue.svg) ![Made with love](https://img.shields.io/badge/Made_with-love-red)
 
-I want to make a starfox-like game for the NumWorks calculator.
+**StarWorks** is a 3D rail-shooter game inspired by Star Fox, developed for the **Numworks** calculator, currently in developement.
+
+You can download the latest binary on this link: [v0.1.0](https://github.com/RockingCha1r/StarWorks/releases/tag/v0.1.0). You can install it with [this website](https://my.numworks.com/apps).
+
+![Image](./img/presentation.png)
 
 ## Build the app
 
@@ -32,11 +36,16 @@ sudo pacman -S arm-none-eabi-gcc arm-none-eabi-binutils nodejs npm
 ```bash
 brew install numworks/tap/arm-none-eabi-gcc node
 ```
+
 </details>
+
+---
+
+After installing the dependencies, use these commands to compile the project:
 
 ```bash
 make clean
 make build
 ```
 
-and you will find the compiled file in `build/starworks.nwa`. You can install it with [this website](https://my.numworks.com/apps). You could also just find this file in the "Releases" section.
+and you will find the compiled file in `build/starworks.nwa`.

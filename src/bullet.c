@@ -51,9 +51,9 @@ void drawBullets(camera *cam) {
             continue;
         }
         point3D bottom = {
-            bullets[i].position.x - bullets[i].direction.x,
-            bullets[i].position.y - bullets[i].direction.y,
-            bullets[i].position.z - bullets[i].direction.z
+            bullets[i].position.x - bullets[i].direction.x * 5,
+            bullets[i].position.y - bullets[i].direction.y * 5,
+            bullets[i].position.z - bullets[i].direction.z * 5
         };
         smallPoint2D bottomScreen = projectPoint(bottom, cam);
         
